@@ -1,10 +1,12 @@
-import { getLinesFromFile } from "../utils.ts";
+import { getLinesFromFile, getModuleDirectory } from "../utils.ts";
 import { partOne, partTwo } from "./main.ts";
 
-Deno.bench(async function one() {
-  partOne(await getLinesFromFile("./input.txt"));
+const lines = await getLinesFromFile(getModuleDirectory(import.meta) + "/input.txt");
+
+Deno.bench(function one() {
+  partOne(lines);
 });
 
-Deno.bench(async function two() {
-  partTwo(await getLinesFromFile("./input.txt"));
+Deno.bench(function two() {
+  partTwo(lines);
 });
